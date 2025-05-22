@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-simple-nginx-deployment # You can change this name
+  labels:
+    app: my-nginx # A label for this deployment
+spec:
+  replicas: 1 # Number of Pods to run
+  selector:
+    matchLabels:
+      app: my-nginx-pod # This must match the labels in the Pod template
+  template: # This is the Pod template
+    metadata:
+      labels:
+        app: my-nginx-pod # Labels for the Pods created by this Deployment
+    spec:
+      containers:
+      - name: nginx-container # Name of the container within the Pod
+        image: nginx:latest   # The Docker image to use (latest Nginx)
+        ports:
+        - containerPort: 80   # The port the container exposes
